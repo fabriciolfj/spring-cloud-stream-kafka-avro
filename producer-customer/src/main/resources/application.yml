@@ -20,6 +20,5 @@ spring.cloud:
           key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
           value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
           schema.registry.url: http://localhost:8081
-
 server:
   port: 9090

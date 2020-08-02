@@ -1,0 +1,16 @@
+spring.cloud:
+  stream:
+    binders:
+      kafka:
+        type: kafka
+    bindings:
+      customer-json:
+        binder: kafka
+        destination: customer-json
+        contentType: application/json
+    kafka:
+      binder:
+        producer-properties:
+          key.serializer: org.apache.kafka.common.serialization.StringSerializer
+server:
+  port: 9090

@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: consumer-customer-json
+
+spring.cloud:
+  stream:
+    binders:
+      kafka:
+        type: kafka
+    bindings:
+      consumerjson:
+        group: '${spring.application.name}'
+        binder: kafka
+        destination: customer-json
+        consumer:
+          max-attempts: 5
+          back-off-max-interval: 30000
+          partitioned: true
+          concurrency: 10
+    kafka:
+      binder:
+        brokers:
+          - http://localhost:9092
+        consumer-properties:
+          key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+server:
+  port: 9091
