@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: consumer-customer
+
+spring.cloud:
+  stream:
+    schema-registry-client: http://localhost:8081
+    binders:
+      kafka:
+        type: kafka
+    default:
+      producer:
+        useNativeEncoding: true
+      consumer:
+        useNativeEncoding: true
+    bindings:
+      customer-input:
+        group: '${spring.application.name}'
+        binder: kafka
+        destination: customer
+        contentType: application/**avro
+    kafka:
+      binder:
+        brokers:
+          - http://localhost:9092
+        consumer-properties:
+          key.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+          value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+          schema.registry.url: http://localhost:8081
+          specific.avro.reader: true

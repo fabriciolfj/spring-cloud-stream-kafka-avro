@@ -1,0 +1,25 @@
+spring.cloud:
+  stream:
+    schema-registry-client: http://localhost:8081
+    binders:
+      kafka:
+        type: kafka
+    default:
+      producer:
+        useNativeEncoding: true
+      consumer:
+        useNativeEncoding: true
+    bindings:
+      customer-output:
+        binder: kafka
+        destination: customer
+        contentType: application/**avro
+    kafka:
+      binder:
+        producer-properties:
+          key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+          value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+          schema.registry.url: http://localhost:8081
+
+server:
+  port: 9090

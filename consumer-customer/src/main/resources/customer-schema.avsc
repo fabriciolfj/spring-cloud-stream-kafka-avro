@@ -1,0 +1,18 @@
+{
+    "type": "record",
+    "name": "CustomerSchema",
+    "namespace": "com.github.fabriciolfj.schema",
+    "fields": [
+    {
+        "name": "id",
+        "type": "long"
+    },
+    {
+        "name": "firstName",
+        "type": "string"
+    },
+    {
+        "name": "lastName",
+        "type": "string"
+    }]
+}
